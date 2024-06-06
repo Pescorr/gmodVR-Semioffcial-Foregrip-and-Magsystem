@@ -36,7 +36,7 @@ function VRMod_SemiOffcial_Include()
     if operation:GetInt() == 2 then
         local paths = {}
         -- ConVarを作成
-        CreateClientConVar("vrmod_dev_unoffcial_folder_included_files", "vrmod_sample01.lua,vrmod_sample02.lua", true, FCVAR_ARCHIVE, "Included Lua files separated by semicolons")
+        CreateClientConVar("vrmod_dev_unoffcial_folder_included_files", "", true, FCVAR_ARCHIVE, "Included Lua files separated by semicolons")
         -- ConVarの値を取得
         local includedFilesString = GetConVar("vrmod_dev_unoffcial_folder_included_files"):GetString()
         local includedFiles = {}

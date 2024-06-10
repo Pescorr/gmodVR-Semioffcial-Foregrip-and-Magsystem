@@ -163,6 +163,25 @@ hook.Add(
 		beampickup_weight:SetDecimals(0)
 		beampickup_weight:SetConVar("vrmod_pickup_weight")
 		beampickup_weight.OnValueChanged = function(self, value) end
+		-- DCheckBoxLabel Start
+		local pickup_beam_damage_enable = MenuTab15:Add("DCheckBoxLabel")
+		pickup_beam_damage_enable:SetPos(20, 140)
+		pickup_beam_damage_enable:SetText("pickup dummy damage")
+		pickup_beam_damage_enable:SetConVar("vrmod_pickup_beam_damage_enable")
+		pickup_beam_damage_enable:SizeToContents()
+		-- DCheckBoxLabel End
+		local pickup_beam_damage = vgui.Create("DNumSlider", MenuTab15)
+		pickup_beam_damage:SetPos(20, 160)
+		pickup_beam_damage:SetSize(370, 25)
+		pickup_beam_damage:SetText("Beam dummy Damage")
+		pickup_beam_damage:SetMin(0)
+		pickup_beam_damage:SetMax(0.001)
+		pickup_beam_damage:SetDecimals(4)
+		pickup_beam_damage:SetConVar("vrmod_pickup_beam_damage")
+		pickup_beam_damage.OnValueChanged = function(self, value) end
+
+
+
 	end
 )
 -- DNumSlider End

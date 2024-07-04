@@ -1,9 +1,9 @@
 AddCSLuaFile()
-CreateClientConVar("vrmod_pickup_beamrange02", 20, true, FCVAR_ARCHIVE, "Range to check for entities to grab")
+CreateClientConVar("vrmod_pickup_beamrange02", 30, true, FCVAR_ARCHIVE, "Range to check for entities to grab")
 CreateClientConVar("vrmod_pickup_weight", 100, true, FCVAR_ARCHIVE, "Max weight of entity to grab")
-CreateClientConVar("vrmod_pickup_beam_enable", 0, true, FCVAR_ARCHIVE, "Enable/disable the pickup beam laser")
-CreateClientConVar("vrmod_pickup_beam_damage", 0.0001, true, FCVAR_ARCHIVE, "Damage dealt by the beam laser",0.0001,0.001)
-CreateClientConVar("vrmod_pickup_beam_damage_enable", 1, true, FCVAR_ARCHIVE, "Enable/disable damage dealt by the beam laser")
+CreateClientConVar("vrmod_pickup_beam_enable", 1, true, FCVAR_ARCHIVE, "Enable/disable the pickup beam laser")
+CreateClientConVar("vrmod_pickup_beam_damage", 0.0000, true, FCVAR_ARCHIVE, "Damage dealt by the beam laser",0,0.001)
+CreateClientConVar("vrmod_pickup_beam_damage_enable", 0, true, FCVAR_ARCHIVE, "Enable/disable damage dealt by the beam laser")
 if SERVER then
     if util ~= nil then
         util.AddNetworkString("vrmod_pickup_beam")
@@ -71,9 +71,9 @@ if SERVER then
                 dmgInfo:SetAttacker(ply)
                 dmgInfo:SetInflictor(ply)
                 dmgInfo:SetDamage(damage)
-                dmgInfo:SetDamageType(DMG_ENERGYBEAM)
+                dmgInfo:SetDamageType(DMG_CRUSH)
                 dmgInfo:SetDamagePosition(hitPos)
-                util.BlastDamageInfo(dmgInfo, hitPos, 1)
+                util.BlastDamageInfo(dmgInfo, hitPos, 0.1)
             end
         )
     else

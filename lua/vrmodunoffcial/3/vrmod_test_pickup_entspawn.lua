@@ -1,5 +1,4 @@
 AddCSLuaFile()
-
 -- Server-side code
 if SERVER then
     util.AddNetworkString("vrmod_test_spawn_entity")
@@ -17,7 +16,7 @@ if SERVER then
                 if not IsValid(spawnedEnt) then return end
                 spawnedEnt:Spawn()
                 spawnedEnt:SetPos(handPos) -- Adjust this value as needed
-                spawnedEnt:SetAngles(handAng - Angle(4.9, 4, -3.5))
+                spawnedEnt:SetAngles(handAng)
                 -- Attempt to pick up using the pickup function from vrmod_pickup.lua
                 if IsValid(spawnedEnt) then
                     -- Using the custom pickup function tailored for VRMod
@@ -32,7 +31,6 @@ if SERVER then
         end
     )
 end
-
 
 -- Client-side code
 if SERVER then return end
@@ -88,4 +86,3 @@ concommand.Add(
         net.SendToServer()
     end
 )
-

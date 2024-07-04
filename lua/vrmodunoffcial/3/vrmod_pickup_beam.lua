@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 if CLIENT then
-	local cl_pickupdisable = CreateClientConVar("vrmod_pickup_beam_enable", 0, true, FCVAR_ARCHIVE)
+	local cl_pickupdisable = CreateClientConVar("vrmod_pickup_beam_enable", 1, true, FCVAR_ARCHIVE)
 	hook.Add(
 		"VRMod_Input",
 		"vrmod_pickup_beam",

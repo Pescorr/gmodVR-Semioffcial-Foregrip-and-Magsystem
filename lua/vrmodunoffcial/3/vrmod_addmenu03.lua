@@ -116,6 +116,14 @@ hook.Add(
 		magent_model:SetText("Magazine Enter Model")
 		magent_model:SetConVar("vrmod_magent_model")
 		-- DTextEntry End
+		-- DCheckBoxLabel Start
+		local magent_eject = MenuTab14:Add("DCheckBoxLabel")
+		magent_eject:SetPos(20, 135)
+		magent_eject:SetText("[WIP]WeaponModel Mag Grab/Eject")
+		magent_eject:SetConVar("vrmod_mag_ejectbone_enable")
+		magent_eject:SizeToContents()
+		-- DCheckBoxLabel End
+		
 		-- MenuTab14 (Magazine) End
 		-- MenuTab15 (Beam Pickup) Start
 		local MenuTab15 = vgui.Create("DPanel", sheet)

@@ -2,8 +2,9 @@ AddCSLuaFile()
 CreateClientConVar("vrmod_pickup_beamrange02", 30, true, FCVAR_ARCHIVE, "Range to check for entities to grab")
 CreateClientConVar("vrmod_pickup_weight", 100, true, FCVAR_ARCHIVE, "Max weight of entity to grab")
 CreateClientConVar("vrmod_pickup_beam_enable", 1, true, FCVAR_ARCHIVE, "Enable/disable the pickup beam laser")
-CreateClientConVar("vrmod_pickup_beam_damage", 0.0000, true, FCVAR_ARCHIVE, "Damage dealt by the beam laser",0,0.001)
+CreateClientConVar("vrmod_pickup_beam_damage", 0.0000, true, FCVAR_ARCHIVE, "Damage dealt by the beam laser", 0, 0.001)
 CreateClientConVar("vrmod_pickup_beam_damage_enable", 0, true, FCVAR_ARCHIVE, "Enable/disable damage dealt by the beam laser")
+CreateClientConVar("vrmod_pickup_beam_ragdoll_spine", 0, true, FCVAR_ARCHIVE, "Enable/disable damage to ragdoll spine")
 if SERVER then
     if util ~= nil then
         util.AddNetworkString("vrmod_pickup_beam")
@@ -64,16 +65,16 @@ if SERVER then
             "vrmod_pickup_beam_damage",
             function(len, ply)
                 if not IsValid(ply) or ply:InVehicle() then return end
-        if not GetConVar("vrmod_pickup_beam_damage_enable"):GetBool() then return end
+                if not GetConVar("vrmod_pickup_beam_damage_enable"):GetBool() then return end
                 local hitPos = net.ReadVector()
                 local damage = net.ReadFloat()
                 local dmgInfo = DamageInfo()
                 dmgInfo:SetAttacker(ply)
                 dmgInfo:SetInflictor(ply)
                 dmgInfo:SetDamage(damage)
-                dmgInfo:SetDamageType(DMG_CRUSH)
-                dmgInfo:SetDamagePosition(hitPos)
-                util.BlastDamageInfo(dmgInfo, hitPos, 0.1)
+                dmgInfo:SetDamageType(DMG_GENERIC)
+                    dmgInfo:SetDamagePosition(hitPos)
+                    util.BlastDamageInfo(dmgInfo, hitPos, 0.2)
             end
         )
     else
@@ -109,11 +110,13 @@ local function DoTrace(handPos, handAng)
     render.AddBeam(traceRes.HitPos, hitvisible, traceRes.Fraction * beamrange:GetFloat(), beamColor)
     render.EndBeam()
     if hitValid then
-        local damage = GetConVar("vrmod_pickup_beam_damage"):GetFloat()
-        net.Start("vrmod_pickup_beam_damage")
-        net.WriteVector(traceRes.HitPos)
-        net.WriteFloat(damage)
-        net.SendToServer()
+        if traceRes.Entity:GetClass() == "prop_ragdoll" then
+            local damage = GetConVar("vrmod_pickup_beam_damage"):GetFloat()
+            net.Start("vrmod_pickup_beam_damage")
+            net.WriteVector(traceRes.HitPos)
+            net.WriteFloat(damage)
+            net.SendToServer()
+        end
     end
 
     return traceRes.HitPos

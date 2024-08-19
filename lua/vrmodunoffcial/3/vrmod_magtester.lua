@@ -29,8 +29,6 @@ hook.Add(
             player.magazineEntity = entity
             -- Play pickup sound on the client
         end
-
-        
     end
 )
 

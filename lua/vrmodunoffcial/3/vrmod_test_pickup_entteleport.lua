@@ -1,9 +1,5 @@
-
-
-
 -- クライアント側のコンソール変数を作成
 AddCSLuaFile()
-
 CreateClientConVar("vrmod_test_entteleport_range", 50, true, FCVAR_ARCHIVE, "Range to check for entities to grab")
 CreateClientConVar("vrmod_pickup_weight", 100, true, FCVAR_ARCHIVE, "Max weight of entity to grab")
 -- サーバー側でFindNearestEntity関数とTeleportEntityToHand関数を定義
@@ -30,13 +26,19 @@ if SERVER then
 
         local function TeleportEntityToHand(ply, handPos, ent, isLeftHand)
             if ent then
-                ent:SetPos(handPos)
                 ent:Activate(false)
-                -- 0.08秒後にpickup関数を実行
-                        pickup(ply, isLeftHand, handPos, Angle())
 
-                -- ent:Activate(true)
+                ent:SetPos(handPos)
+                -- 0.08秒後にpickup関数を実行
+                timer.Simple(
+                    0.30,
+                    function()
+                pickup(ply, isLeftHand, handPos, Angle())
+                    end
+                )
+
             end
+
         end
 
         -- ネットワークメッセージを受信した時の処理
@@ -92,7 +94,7 @@ if CLIENT then
             net.WriteFloat(maxWeight)
             net.WriteString(entClass)
             net.SendToServer()
-        end 
+        end
     )
 
     -- vrmod_test_pickup_entteleport_rightの改造

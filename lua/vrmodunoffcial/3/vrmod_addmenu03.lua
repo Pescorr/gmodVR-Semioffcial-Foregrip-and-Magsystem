@@ -4,7 +4,7 @@ if SERVER then return end
 local convars, convarValues = vrmod.GetConvars()
 hook.Add(
 	"VRMod_Menu",
-	"addsettings02",
+	"addsettings03",
 	function(frame)
 		--Settings02 Start
 		--add VRMod_Menu Settings02 propertysheet start
@@ -86,45 +86,6 @@ hook.Add(
 		-- entteleport_range.OnValueChanged = function(self, value) end
 		-- -- DNumSlider End
 		-- -- MenuTab12 (Entity Teleport) End
-		-- MenuTab14 (Magazine) Start
-		local MenuTab14 = vgui.Create("DPanel", sheet)
-		sheet:AddSheet("Magazine", MenuTab14, "icon16/basket.png")
-		MenuTab14.Paint = function(self, w, h) end
-		-- DTextEntry Start
-		local magent_sound = vgui.Create("DTextEntry", MenuTab14)
-		magent_sound:SetPos(20, 40)
-		magent_sound:SetSize(370, 25)
-		magent_sound:SetText("Magazine Enter Sound")
-		magent_sound:SetConVar("vrmod_magent_sound")
-		-- DTextEntry End
-		-- DNumSlider Start
-		-- vrmod_magent_range
-		local magent_range = vgui.Create("DNumSlider", MenuTab14)
-		magent_range:SetPos(20, 70)
-		magent_range:SetSize(370, 25)
-		magent_range:SetText("Magazine Enter Range")
-		magent_range:SetMin(1)
-		magent_range:SetMax(100)
-		magent_range:SetDecimals(0)
-		magent_range:SetConVar("vrmod_magent_range")
-		magent_range.OnValueChanged = function(self, value) end
-		-- DNumSlider End
-		-- DTextEntry Start
-		local magent_model = vgui.Create("DTextEntry", MenuTab14)
-		magent_model:SetPos(20, 100)
-		magent_model:SetSize(370, 25)
-		magent_model:SetText("Magazine Enter Model")
-		magent_model:SetConVar("vrmod_magent_model")
-		-- DTextEntry End
-		-- DCheckBoxLabel Start
-		local magent_eject = MenuTab14:Add("DCheckBoxLabel")
-		magent_eject:SetPos(20, 135)
-		magent_eject:SetText("[WIP]WeaponModel Mag Grab/Eject")
-		magent_eject:SetConVar("vrmod_mag_ejectbone_enable")
-		magent_eject:SizeToContents()
-		-- DCheckBoxLabel End
-		
-		-- MenuTab14 (Magazine) End
 		-- MenuTab15 (Beam Pickup) Start
 		local MenuTab15 = vgui.Create("DPanel", sheet)
 		sheet:AddSheet("Beam Pickup", MenuTab15, "icon16/lightning.png")

@@ -26,19 +26,16 @@ if SERVER then
 
         local function TeleportEntityToHand(ply, handPos, ent, isLeftHand)
             if ent then
-                ent:Activate(false)
-
+                -- ent:SetGravity(0.65)
                 ent:SetPos(handPos)
                 -- 0.08秒後にpickup関数を実行
                 timer.Simple(
-                    0.30,
+                    0.15,
                     function()
-                pickup(ply, isLeftHand, handPos, Angle())
+                        pickup(ply, isLeftHand, handPos, Angle())
                     end
                 )
-
             end
-
         end
 
         -- ネットワークメッセージを受信した時の処理

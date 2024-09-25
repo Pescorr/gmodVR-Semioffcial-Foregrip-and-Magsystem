@@ -19,17 +19,22 @@ if SERVER then
 
                 -- spawnedEnt:SetAngles(handAng)
                 -- Attempt to pick up using the pickup function from vrmod_pickup.lua
-                -- if IsValid(spawnedEnt) then
+                if IsValid(spawnedEnt) then
                     -- Using the custom pickup function tailored for VRMod
-                    pickup(ply, isLeftHand, handPos, Angle())
-                    -- vrmod.Pickup(isLeftHand, not pressed)
+                    timer.Simple(
+                        0.15,
+                        function()
+                            pickup(ply, isLeftHand, handPos, Angle())
+                        end
+                    )
+                        -- vrmod.Pickup(isLeftHand, not pressed)
                     -- 追従タイマーを停止するロジックをここに追加
                     timer.Remove(ply:UserID() .. "followAndTryPickup")
-                -- end
+                end
             end
 
             -- Repeatedly try to follow and pickup until the entity is picked up or becomes invalid
-            timer.Create(ply:UserID() .. "followAndTryPickup", 0.11, 0, followAndTryPickup)
+            timer.Create(ply:UserID() .. "followAndTryPickup", 0, 11, followAndTryPickup)
         end
     )
 end

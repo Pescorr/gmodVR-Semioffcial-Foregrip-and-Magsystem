@@ -59,9 +59,47 @@ hook.Add(
 		vrmod_Foregripmode_key_leftgrab:SetConVar("vrmod_Foregripmode_key_leftgrab")
 		vrmod_Foregripmode_key_leftgrab.OnValueChanged = function(self, value) end
 		-- DNumSlider End
+		-- 全体的な回転感度
+		local foregrip_rotation_sensitivity = vgui.Create("DNumSlider", MenuTab11)
+		foregrip_rotation_sensitivity:SetPos(20, 130)
+		foregrip_rotation_sensitivity:SetSize(370, 25)
+		foregrip_rotation_sensitivity:SetText("Overall Rotation Sensitivity")
+		foregrip_rotation_sensitivity:SetMin(0)
+		foregrip_rotation_sensitivity:SetMax(1)
+		foregrip_rotation_sensitivity:SetDecimals(2)
+		foregrip_rotation_sensitivity:SetConVar("vrmod_foregrip_rotation_sensitivity")
+		foregrip_rotation_sensitivity.OnValueChanged = function(self, value) end
+		-- ピッチ軸のブレンド
+		local foregrip_pitch_blend = vgui.Create("DNumSlider", MenuTab11)
+		foregrip_pitch_blend:SetPos(20, 160)
+		foregrip_pitch_blend:SetSize(370, 25)
+		foregrip_pitch_blend:SetText("Pitch Axis Blend (0: Right Hand, 1: Left Hand)")
+		foregrip_pitch_blend:SetMin(0)
+		foregrip_pitch_blend:SetMax(1)
+		foregrip_pitch_blend:SetDecimals(2)
+		foregrip_pitch_blend:SetConVar("vrmod_foregrip_pitch_blend")
+		foregrip_pitch_blend.OnValueChanged = function(self, value) end
+		-- ヨー軸のブレンド
+		local foregrip_yaw_blend = vgui.Create("DNumSlider", MenuTab11)
+		foregrip_yaw_blend:SetPos(20, 190)
+		foregrip_yaw_blend:SetSize(370, 25)
+		foregrip_yaw_blend:SetText("Yaw Axis Blend (0: Right Hand, 1: Left Hand)")
+		foregrip_yaw_blend:SetMin(0)
+		foregrip_yaw_blend:SetMax(1)
+		foregrip_yaw_blend:SetDecimals(2)
+		foregrip_yaw_blend:SetConVar("vrmod_foregrip_yaw_blend")
+		foregrip_yaw_blend.OnValueChanged = function(self, value) end
+		-- ロール軸のブレンド
+		local foregrip_roll_blend = vgui.Create("DNumSlider", MenuTab11)
+		foregrip_roll_blend:SetPos(20, 220)
+		foregrip_roll_blend:SetSize(370, 25)
+		foregrip_roll_blend:SetText("Roll Axis Blend (0: Right Hand, 1: Left Hand)")
+		foregrip_roll_blend:SetMin(0)
+		foregrip_roll_blend:SetMax(1)
+		foregrip_roll_blend:SetDecimals(2)
+		foregrip_roll_blend:SetConVar("vrmod_foregrip_roll_blend")
+		foregrip_roll_blend.OnValueChanged = function(self, value) end
 		-- MenuTab11 (Foregrip) End
-
-		
 		-- -- MenuTab12 (Entity Teleport) Start
 		-- local MenuTab12 = vgui.Create("DPanel", sheet)
 		-- sheet:AddSheet("Entity Teleport", MenuTab12, "icon16/wand.png")
@@ -148,9 +186,6 @@ hook.Add(
 		pickup_beam_damage:SetDecimals(4)
 		pickup_beam_damage:SetConVar("vrmod_pickup_beam_damage")
 		pickup_beam_damage.OnValueChanged = function(self, value) end
-
-
-
 	end
 )
 -- DNumSlider End

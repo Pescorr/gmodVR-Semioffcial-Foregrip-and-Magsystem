@@ -4,7 +4,7 @@ local some_threshold = CreateClientConVar("vrmod_Foregripmode_range", "13", true
 local left_primary = CreateClientConVar("vrmod_Foregripmode_key_leftprimary", "1", true, FCVAR_ARCHIVE, "0 = OFF 1 = Hold 2 = Toggle")
 local left_grab = CreateClientConVar("vrmod_Foregripmode_key_leftgrab", "0", true, FCVAR_ARCHIVE, "0 = OFF 1 = Hold 2 = Toggle")
 local gripenable = CreateClientConVar("vrmod_Foregripmode_enable", 1, true, FCVAR_ARCHIVE)
-local dummylefthand = GetConVar("vrmod_LeftHand")
+local dummylefthand = CreateClientConVar("vrmod_LeftHand", 0, false, FCVAR_ARCHIVE)
 local isForegripmodeEnabled = false
 local function CheckHandTouch(player)
     local leftHandPos = vrmod.GetLeftHandPos(player)
